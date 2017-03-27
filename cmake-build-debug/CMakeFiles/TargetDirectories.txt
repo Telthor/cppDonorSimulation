@@ -1,0 +1,3 @@
+/Users/davidwise/Google Drive/UCL/PhD_1/pythonSimulations/donorSimulation/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/davidwise/Google Drive/UCL/PhD_1/pythonSimulations/donorSimulation/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/davidwise/Google Drive/UCL/PhD_1/pythonSimulations/donorSimulation/cmake-build-debug/CMakeFiles/donorSimulation.dir
