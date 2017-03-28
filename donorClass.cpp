@@ -34,5 +34,16 @@ void Donor::setSpinsMats() {
         double cInc = pow((2*nucSpin*inc + inc*(1-inc)),0.5);
         Donor::coeffs.push_back(cInc);
     }
+
+    Donor::Icr.resize(nucSpin*2+1, nucSpin*2+1);
+    Donor::Ian.resize(nucSpin*2+1, nucSpin*2+1);
+    for (int inc = 0; inc <= (2*nucSpin-1); ++inc) {
+        Icr(inc, inc+1) = Donor::coeffs[inc];
+        Ian(inc+1, inc) = Donor::coeffs[inc];
+    }
+
+    Donor::Ix = (1.0/2.0)*(Icr+Ian);
+    Donor::Iy = (-i/(2.0))*(Icr-Ian);
+    Donor::Iz = ((Ix*Iy) - (Iy*Ix))/i;
 }
 

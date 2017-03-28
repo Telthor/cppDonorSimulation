@@ -54,6 +54,8 @@ public:
     MatrixXcd Ix;
     MatrixXcd Iy;
     MatrixXcd Iz;
+    MatrixXcd Icr;
+    MatrixXcd Ian;
 
     std::vector<double> coeffs;
 

@@ -8,7 +8,7 @@
 #include <Eigen/Dense>
 
 int main() {
-	Donor phos(2.5, 1.5);
+	Donor phos(4.5, 1.5);
 	std::cout << "nuc spin is:" << phos.getNucSpin() << "\n";
 	std::cout << "hyp is:" << phos.getHypCoup() << "\n";
 	phos.setHypCoup(5);
@@ -16,7 +16,11 @@ int main() {
 	std::cout << "hyp is:" << phos.getHypCoup() << "\n";
 	std::cout << "Sx is \n" << phos.Sx << "\n";
     std::cout << "Sy is \n" << phos.Sy << "\n";
-    std::cout << "Sz is \n" << phos.Sz << "\n";
+    std::cout << "Cr is \n" << phos.Icr << "\n";
+    std::cout << "An is \n" << phos.Ian << "\n";
+    std::cout << "Ix is \n" << phos.Ix << "\n";
+    std::cout << "Iy is \n" << phos.Iy << "\n";
+    std::cout << "Iz is \n" << phos.Iz << "\n";
     std::cout << "complex \n" << phos.i;
 //    MatrixXd m(2,2);
 //    m(0,0) = 3;
