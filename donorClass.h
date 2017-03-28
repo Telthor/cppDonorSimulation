@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <Eigen/Dense>
+#include <cmath>
 
 using namespace Eigen;
 
@@ -21,7 +22,8 @@ class Donor {
 	const double ge = 1.9985;
 	const double gn = 2.2632;
 	const double mu_e = 9.274e-24;
-	const double h_bar = 1.055e-34;
+//	const double h_bar = 1.055e-34;
+    const double h_bar = 1;
 	const double mu_n = 5.051e-27;
 	const double A = 7.29e-26;
 	const double k_B = 1.380e-23;
@@ -52,6 +54,8 @@ public:
     MatrixXcd Ix;
     MatrixXcd Iy;
     MatrixXcd Iz;
+
+    std::vector<double> coeffs;
 
     std::complex<double> i{0,1};
 };

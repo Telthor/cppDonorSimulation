@@ -4,13 +4,13 @@
 
 #include <iostream>
 #include "donorClass.h"
+#include <stdio.h>
 #include <Eigen/Dense>
 
 int main() {
-	Donor phos(0.5, 1);
+	Donor phos(2.5, 1.5);
 	std::cout << "nuc spin is:" << phos.getNucSpin() << "\n";
 	std::cout << "hyp is:" << phos.getHypCoup() << "\n";
-	phos.setNucSpin(2.5);
 	phos.setHypCoup(5);
 	std::cout << "nuc spin is:" << phos.getNucSpin() << "\n";
 	std::cout << "hyp is:" << phos.getHypCoup() << "\n";
