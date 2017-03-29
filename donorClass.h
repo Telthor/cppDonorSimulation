@@ -9,23 +9,23 @@
 #include <iostream>
 #include <vector>
 #include <Eigen/Dense>
+#include <unsupported/Eigen/KroneckerProduct>
 #include <cmath>
 
 using namespace Eigen;
 
 class Donor {
 	Donor(){};
-	float nucSpin;
-	float hypCoup;
+	double nucSpin;
 
 	// Values of constants
 	const double ge = 1.9985;
 	const double gn = 2.2632;
 	const double mu_e = 9.274e-24;
-//	const double h_bar = 1.055e-34;
-    const double h_bar = 1;
+	const double h_bar = 1.055e-34;
+//    const double h_bar = 1;
 	const double mu_n = 5.051e-27;
-	const double A = 7.29e-26;
+	double A;
 	const double k_B = 1.380e-23;
 
 
@@ -35,16 +35,21 @@ class Donor {
     void setSpinsMats();
 
 public:
-	Donor(const float nucVal, const float hypVal) {
+	Donor(const double nucVal, const double hypVal) {
 		nucSpin = nucVal;
-		hypCoup = hypVal;
+		A = hypVal;
         setSpinsMats();
 	}
     ~Donor(){std::cout << "destruction \n";};
-    void setNucSpin(const float value);
-    float getNucSpin();
-    void setHypCoup(const float value);
-    float getHypCoup();
+
+    void setNucSpin(const double value);
+    double getNucSpin();
+    void setHypCoup(const double value);
+    double getHypCoup();
+	MatrixXcd getEigs(const double B_0);
+    // Identity Matrix
+    Matrix2cd Id;
+
     //Electron Spin Matrices
     Matrix2cd Sx;
     Matrix2cd Sy;
@@ -56,6 +61,20 @@ public:
     MatrixXcd Iz;
     MatrixXcd Icr;
     MatrixXcd Ian;
+
+    // Joint Spin Matrices
+    MatrixXcd Sx_f;
+    MatrixXcd Sy_f;
+    MatrixXcd Sz_f;
+
+    MatrixXcd Ix_f;
+    MatrixXcd Iy_f;
+    MatrixXcd Iz_f;
+
+    MatrixXcd S_I;
+
+    // Hamiltonian
+	MatrixXcd Ham;
 
     std::vector<double> coeffs;
 

@@ -1,23 +1,24 @@
 // Copyright 2017 David Wise
 #include <iostream>
 #include <Eigen/Dense>
+#include <unsupported/Eigen/KroneckerProduct>
 #include "donorClass.h"
 
 using namespace Eigen;
 
-void Donor::setNucSpin(const float value) {
+void Donor::setNucSpin(const double value) {
     Donor::coeffs.clear();
     Donor::nucSpin = value;
     setSpinsMats();
 }
-float Donor::getNucSpin() {
+double Donor::getNucSpin() {
 	return nucSpin;
 }
-void Donor::setHypCoup(const float value) {
-	Donor::hypCoup = value;
+void Donor::setHypCoup(const double value) {
+	Donor::A = value;
 }
-float Donor::getHypCoup() {
-	return hypCoup;
+double Donor::getHypCoup() {
+	return A;
 }
 void Donor::setSpinsMats() {
 //  Set up Electron spin operators
@@ -27,6 +28,7 @@ void Donor::setSpinsMats() {
     Donor::Sy *= h_bar/2;
     Donor::Sz << 1,0,0,-1;
     Donor::Sz *= h_bar/2;
+    Donor::Id << 1, 0, 0, 1;
 
 //  Set up Nuclear spin operators
 
@@ -42,8 +44,27 @@ void Donor::setSpinsMats() {
         Ian(inc+1, inc) = Donor::coeffs[inc];
     }
 
-    Donor::Ix = (1.0/2.0)*(Icr+Ian);
-    Donor::Iy = (-i/(2.0))*(Icr-Ian);
-    Donor::Iz = ((Ix*Iy) - (Iy*Ix))/i;
+    Donor::Ix = h_bar*(1.0/2.0)*(Icr+Ian);
+    Donor::Iy = h_bar*(-i/(2.0))*(Icr-Ian);
+    Donor::Iz = h_bar*((Ix*Iy) - (Iy*Ix))/i;
+
+
+
+    Donor::Sx_f = kroneckerProduct(Sx, Id);
+    Donor::Sy_f = kroneckerProduct(Sy, Id);
+    Donor::Sz_f = kroneckerProduct(Sz, Id);
+    Donor::Ix_f = kroneckerProduct(Id, Ix);
+    Donor::Iy_f = kroneckerProduct(Id, Iy);
+    Donor::Iz_f = kroneckerProduct(Id, Iz);
+
+    Donor::S_I = kroneckerProduct(Sx, Ix) + kroneckerProduct(Sy, Iy) + kroneckerProduct(Sz, Iz);
+
+}
+
+MatrixXcd Donor::getEigs(const double B_0) {
+    Donor::Ham = (ge*mu_e/h_bar)*B_0*Sz_f - (gn*mu_n/h_bar)*B_0*Iz_f + A/(pow(h_bar,2))*S_I;
+    ComplexEigenSolver<MatrixXcd> es(Ham);
+    es.compute(Ham);
+    return es.eigenvalues();
 }
 
