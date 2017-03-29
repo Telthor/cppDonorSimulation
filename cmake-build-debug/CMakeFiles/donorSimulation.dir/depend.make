@@ -199,6 +199,7 @@ CMakeFiles/donorSimulation.dir/donorClass.cpp.o: /Users/davidwise/Downloads/eige
 CMakeFiles/donorSimulation.dir/donorClass.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/SVD/JacobiSVD_LAPACKE.h
 CMakeFiles/donorSimulation.dir/donorClass.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/SVD/SVDBase.h
 CMakeFiles/donorSimulation.dir/donorClass.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/SVD/UpperBidiagonalization.h
+CMakeFiles/donorSimulation.dir/donorClass.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/SparseCore/SparseUtil.h
 CMakeFiles/donorSimulation.dir/donorClass.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/misc/Image.h
 CMakeFiles/donorSimulation.dir/donorClass.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/misc/Kernel.h
 CMakeFiles/donorSimulation.dir/donorClass.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/misc/RealSvd2x2.h
@@ -212,6 +213,8 @@ CMakeFiles/donorSimulation.dir/donorClass.cpp.o: /Users/davidwise/Downloads/eige
 CMakeFiles/donorSimulation.dir/donorClass.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/plugins/CommonCwiseUnaryOps.h
 CMakeFiles/donorSimulation.dir/donorClass.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/plugins/MatrixCwiseBinaryOps.h
 CMakeFiles/donorSimulation.dir/donorClass.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/plugins/MatrixCwiseUnaryOps.h
+CMakeFiles/donorSimulation.dir/donorClass.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/unsupported/Eigen/KroneckerProduct
+CMakeFiles/donorSimulation.dir/donorClass.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/unsupported/Eigen/src/KroneckerProduct/KroneckerTensorProduct.h
 CMakeFiles/donorSimulation.dir/donorClass.cpp.o: ../donorClass.cpp
 CMakeFiles/donorSimulation.dir/donorClass.cpp.o: ../donorClass.h
 
@@ -413,6 +416,7 @@ CMakeFiles/donorSimulation.dir/main.cpp.o: /Users/davidwise/Downloads/eigen-eige
 CMakeFiles/donorSimulation.dir/main.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/SVD/JacobiSVD_LAPACKE.h
 CMakeFiles/donorSimulation.dir/main.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/SVD/SVDBase.h
 CMakeFiles/donorSimulation.dir/main.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/SVD/UpperBidiagonalization.h
+CMakeFiles/donorSimulation.dir/main.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/SparseCore/SparseUtil.h
 CMakeFiles/donorSimulation.dir/main.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/misc/Image.h
 CMakeFiles/donorSimulation.dir/main.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/misc/Kernel.h
 CMakeFiles/donorSimulation.dir/main.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/misc/RealSvd2x2.h
@@ -426,6 +430,8 @@ CMakeFiles/donorSimulation.dir/main.cpp.o: /Users/davidwise/Downloads/eigen-eige
 CMakeFiles/donorSimulation.dir/main.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/plugins/CommonCwiseUnaryOps.h
 CMakeFiles/donorSimulation.dir/main.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/plugins/MatrixCwiseBinaryOps.h
 CMakeFiles/donorSimulation.dir/main.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/Eigen/src/plugins/MatrixCwiseUnaryOps.h
+CMakeFiles/donorSimulation.dir/main.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/unsupported/Eigen/KroneckerProduct
+CMakeFiles/donorSimulation.dir/main.cpp.o: /Users/davidwise/Downloads/eigen-eigen-67e894c6cd8f/unsupported/Eigen/src/KroneckerProduct/KroneckerTensorProduct.h
 CMakeFiles/donorSimulation.dir/main.cpp.o: ../donorClass.h
 CMakeFiles/donorSimulation.dir/main.cpp.o: ../main.cpp
 
