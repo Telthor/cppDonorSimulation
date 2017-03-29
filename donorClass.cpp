@@ -28,7 +28,8 @@ void Donor::setSpinsMats() {
     Donor::Sy *= h_bar/2;
     Donor::Sz << 1,0,0,-1;
     Donor::Sz *= h_bar/2;
-    Donor::Id << 1, 0, 0, 1;
+    Donor::IdS = MatrixXcd::Identity(2*nucSpin+1, 2*nucSpin+1);
+    Donor::IdI = MatrixXcd::Identity(2, 2);
 
 //  Set up Nuclear spin operators
 
@@ -50,12 +51,12 @@ void Donor::setSpinsMats() {
 
 
 
-    Donor::Sx_f = kroneckerProduct(Sx, Id);
-    Donor::Sy_f = kroneckerProduct(Sy, Id);
-    Donor::Sz_f = kroneckerProduct(Sz, Id);
-    Donor::Ix_f = kroneckerProduct(Id, Ix);
-    Donor::Iy_f = kroneckerProduct(Id, Iy);
-    Donor::Iz_f = kroneckerProduct(Id, Iz);
+    Donor::Sx_f = kroneckerProduct(Sx, IdS);
+    Donor::Sy_f = kroneckerProduct(Sy, IdS);
+    Donor::Sz_f = kroneckerProduct(Sz, IdS);
+    Donor::Ix_f = kroneckerProduct(IdI, Ix);
+    Donor::Iy_f = kroneckerProduct(IdI, Iy);
+    Donor::Iz_f = kroneckerProduct(IdI, Iz);
 
     Donor::S_I = kroneckerProduct(Sx, Ix) + kroneckerProduct(Sy, Iy) + kroneckerProduct(Sz, Iz);
 

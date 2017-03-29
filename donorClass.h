@@ -48,7 +48,8 @@ public:
     double getHypCoup();
 	MatrixXcd getEigs(const double B_0);
     // Identity Matrix
-    Matrix2cd Id;
+    MatrixXcd IdS;
+    MatrixXcd IdI;
 
     //Electron Spin Matrices
     Matrix2cd Sx;
