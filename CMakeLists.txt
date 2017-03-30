@@ -8,3 +8,5 @@ set(SOURCE_FILES
         donorClass.cpp main.cpp donorClass.h)
 
 add_executable(donorSimulation ${SOURCE_FILES})
+
+add_subdirectory(donorTests)
