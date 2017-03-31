@@ -69,3 +69,6 @@ MatrixXcd Donor::getEigs(const double B_0) {
     return es.eigenvalues();
 }
 
+void Donor::initialise() {
+
+}
