@@ -15,6 +15,7 @@
 using namespace Eigen;
 
 class Donor {
+    friend class DonorFixture;
 	Donor(){};
 	double nucSpin;
 
@@ -33,9 +34,18 @@ class Donor {
 
     //Spin Matrices Setters
     void setSpinsMats();
+    void initialise();
 
 public:
 	Donor(const double nucVal, const double hypVal) {
+        if (floor(2*nucVal) != 2*nucVal) {
+            try {
+                throw std::invalid_argument("Please use integer or half-integer value");
+            }
+            catch (std::invalid_argument){
+                std::cout << "Please use integer or half-integer value \n";
+            }
+        }
 		nucSpin = nucVal;
 		A = hypVal;
         setSpinsMats();
