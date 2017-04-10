@@ -69,6 +69,11 @@ MatrixXcd Donor::getEigs(const double B_0) {
     return es.eigenvalues();
 }
 
-void Donor::initialise() {
-
+void Donor::initialise(double nucVal, double hypVal) {
+    if (floor(2*nucVal) != 2*nucVal) {
+        throw std::invalid_argument("Please use integer or half-integer value");
+    };
+    Donor::nucSpin = nucVal;
+    Donor::A = hypVal;
+    Donor::setSpinsMats();
 }

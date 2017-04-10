@@ -12,7 +12,8 @@
 using namespace std;
 
 int main() {
-	Donor phos(0.25, 7.29e-26);
+	Donor phos;
+    phos.initialise(1.5, 7.29e-26);
     Donor bis(4.5, 7e-25);
 //	std::cout << "nuc spin is:" << phos.getNucSpin() << "\n";
 //	std::cout << "hyp is:" << phos.getHypCoup() << "\n";
