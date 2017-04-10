@@ -13,44 +13,46 @@ using namespace std;
 
 int main() {
 	Donor phos;
-    phos.initialise(1.5, 7.29e-26);
-    Donor bis(4.5, 7e-25);
+    phos.initialise(0.5, 7.29e-26);
+//    Donor bis(4.5, 7e-25);
 //	std::cout << "nuc spin is:" << phos.getNucSpin() << "\n";
 //	std::cout << "hyp is:" << phos.getHypCoup() << "\n";
 //	std::cout << "nuc spin is:" << phos.getNucSpin() << "\n";
 //	std::cout << "hyp is:" << phos.getHypCoup() << "\n";
     std::cout << "Id is \n" << phos.IdI << "\n";
-	std::cout << "Sx is \n" << 2*phos.Sx << "\n";
-	std::cout << "Ix is \n" << phos.Ix << "\n";
+	std::cout << "Sz is \n" << phos.Sz << "\n";
+	std::cout << "Iz is \n" << phos.Iz << "\n";
+    std::cout << "Ix is \n" << phos.Ix << "\n";
+    std::cout << "Iy is \n" << phos.Iy << "\n";
     std::cout << "Szf is \n" << phos.Sz_f << "\n";
 	phos.getEigs(1);
 	std::cout << "Ham is \n" << phos.Ham << "\n";
 	ComplexEigenSolver<MatrixXcd> ces;
     ces.compute(phos.Ham);
-	std::cout << "Eigs are: \n" << phos.getEigs(0.0005) << "\n";
+	std::cout << "Eigs are: \n" << phos.getEigs(0.000) << "\n";
 
 //    Gnuplot gp;
-    std::vector<std::complex<double>> eig1;
-    std::vector<std::complex<double>> eig2;
-    std::vector<std::complex<double>> eig3;
-    std::vector<std::complex<double>> eig4;
-    std::vector<double> fields;
+//    std::vector<std::complex<double>> eig1;
+//    std::vector<std::complex<double>> eig2;
+//    std::vector<std::complex<double>> eig3;
+//    std::vector<std::complex<double>> eig4;
+//    std::vector<double> fields;
 //
-    for (double incr = 0; incr <0.1; incr += 0.00001) {
-        MatrixXcd Eigs = phos.getEigs(incr);
-        eig1.push_back(Eigs(0,0));
-        eig2.push_back(Eigs(1,0));
-        eig4.push_back(Eigs(3,0));
-        eig3.push_back(Eigs(2,0));
-        fields.push_back(incr);
-    }
-
-    std::cout << "Eig1 is \n" << eig1[999] << "\n";
-
-    ofstream myFile;
-    myFile.open ("~/dataTest.txt");
-    myFile << "Try this";
-    myFile.close();
+//    for (double incr = 0; incr <0.1; incr += 0.00001) {
+//        MatrixXcd Eigs = phos.getEigs(incr);
+//        eig1.push_back(Eigs(0,0));
+//        eig2.push_back(Eigs(1,0));
+//        eig4.push_back(Eigs(3,0));
+//        eig3.push_back(Eigs(2,0));
+//        fields.push_back(incr);
+//    }
+//
+//    std::cout << "Eig1 is \n" << eig1[999] << "\n";
+//
+//    ofstream myFile;
+//    myFile.open ("~/dataTest.txt");
+//    myFile << "Try this";
+//    myFile.close();
 
 
 

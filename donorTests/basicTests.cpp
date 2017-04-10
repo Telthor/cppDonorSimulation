@@ -10,8 +10,8 @@
 
 class DonorTest: public ::testing::Test {
 public:
-    Matrix2cd Iz2Hard;
-    Matrix4cd Iz4Hard;
+    MatrixXcd Iz2Hard;
+    MatrixXcd Iz4Hard;
     MatrixXcd Iz6Hard;
     Donor phosTest2;
     Donor phosTest4;
@@ -19,12 +19,15 @@ public:
 protected:
     virtual void SetUp() {
         phosTest2.initialise(0.5, 7.29e-26);
-        phosTest4.initialise(1.5, 7.29e-26);
-        phosTest6.initialise(2.5, 7.29e-26);
+        std::cout << "phos2 Iz \n" << phosTest2.Iz << "\n";
+//        phosTest4.initialise(1.5, 7.29e-26);
+//        phosTest6.initialise(2.5, 7.29e-26);
         const double h_bar = 1.055e-34;
+        Iz2Hard.resize(2,2);
         Iz2Hard << 1, 0, 0, -1;
         Iz2Hard *= h_bar / 2;
 
+        Iz4Hard.resize(4,4);
         Iz4Hard(0, 0) = 3 / 2;
         Iz4Hard(1, 1) = 1 / 2;
         Iz4Hard(2, 2) = -1 / 2;
@@ -47,7 +50,7 @@ protected:
 
 
 TEST_F(DonorTest, test_eq_2) {
-    EXPECT_EQ(1,1);
+    EXPECT_EQ(phosTest2.Iz(0,0), Iz2Hard(0,0));
 }
 
 //TEST_F(DonorFixture, test_eq_4) {

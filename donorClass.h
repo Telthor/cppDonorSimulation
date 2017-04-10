@@ -88,7 +88,7 @@ public:
     // Hamiltonian
 	MatrixXcd Ham;
 
-    std::vector<double> coeffs;
+    std::vector<std::complex<double>> coeffs;
 
     std::complex<double> i{0,1};
 };

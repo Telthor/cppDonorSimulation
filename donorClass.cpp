@@ -33,21 +33,22 @@ void Donor::setSpinsMats() {
 
 //  Set up Nuclear spin operators
 
-    for (int inc = 1; inc <= (2*nucSpin); ++inc) {
-        double cInc = pow((2*nucSpin*inc + inc*(1-inc)),0.5);
+    for (int inc = 1; inc < (2*nucSpin)+1; ++inc) {
+        std::complex<double> cInc = sqrt(2*nucSpin*inc + inc*(1-inc));
+        std::cout << "Coeff "<< inc << " is \n" << cInc << "\n";
         Donor::coeffs.push_back(cInc);
     }
 
     Donor::Icr.resize(nucSpin*2+1, nucSpin*2+1);
     Donor::Ian.resize(nucSpin*2+1, nucSpin*2+1);
     for (int inc = 0; inc <= (2*nucSpin-1); ++inc) {
-        Icr(inc, inc+1) = Donor::coeffs[inc];
-        Ian(inc+1, inc) = Donor::coeffs[inc];
+        Donor::Icr(inc, inc+1) = Donor::coeffs[inc];
+        Donor::Ian(inc+1, inc) = Donor::coeffs[inc];
     }
 
     Donor::Ix = h_bar*(1.0/2.0)*(Icr+Ian);
     Donor::Iy = h_bar*(-i/(2.0))*(Icr-Ian);
-    Donor::Iz = h_bar*((Ix*Iy) - (Iy*Ix))/i;
+    Donor::Iz = (-i/h_bar)*((Ix*Iy) - (Iy*Ix));
 
 
 
