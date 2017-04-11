@@ -53,9 +53,6 @@ protected:
 
 // Test the creation of the 0.5 nucSpin matrices
 TEST_F(DonorTest, test_eq_2) {
-//    std::cout << "Iz is \n" << phosTest2.Iz << "\n";
-    std::cout << "Ix is \n" << phosTest2.Ix << "\n";
-    std::cout << "Iy is \n" << phosTest2.Iy << "\n";
     ASSERT_TRUE(phosTest2.Iz(0,0) == Iz2Hard(0,0));
     ASSERT_TRUE(phosTest2.Iz(1,1) == Iz2Hard(1,1));
 }
