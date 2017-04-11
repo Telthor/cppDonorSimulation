@@ -91,4 +91,8 @@ public:
     std::vector<std::complex<double>> coeffs;
 
     std::complex<double> i{0,1};
+	std::complex<double> min{-1,0};
+//	std::complex<double> i = std::sqrt(min);
+//	std::complex<double> i = std::sqrt(static_cast<std::complex<double>>(-1));
+
 };
