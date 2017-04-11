@@ -22,6 +22,7 @@ double Donor::getHypCoup() {
 }
 void Donor::setSpinsMats() {
 //  Set up Electron spin operators
+    Donor::coeffs.clear();
     Donor::Sx << 0,1,1,0;
     Donor::Sx *= (h_bar/2);
     Donor::Sy << 0,-i,i,0;

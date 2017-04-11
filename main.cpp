@@ -13,7 +13,7 @@ using namespace std;
 
 int main() {
 	Donor phos;
-    phos.initialise(0.5, 7.29e-26);
+    phos.initialise(2.5, 7.29e-26);
 //    Donor bis(4.5, 7e-25);
 //	std::cout << "nuc spin is:" << phos.getNucSpin() << "\n";
 //	std::cout << "hyp is:" << phos.getHypCoup() << "\n";
@@ -29,7 +29,7 @@ int main() {
 	std::cout << "Ham is \n" << phos.Ham << "\n";
 	ComplexEigenSolver<MatrixXcd> ces;
     ces.compute(phos.Ham);
-	std::cout << "Eigs are: \n" << phos.getEigs(0.000) << "\n";
+	std::cout << "Eigs are: \n" << phos.getEigs(0.000).size() << "\n";
 
 //    Gnuplot gp;
 //    std::vector<std::complex<double>> eig1;

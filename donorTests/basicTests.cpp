@@ -10,6 +10,8 @@
 
 class DonorTest: public ::testing::Test {
 public:
+//    DonorTest() {};
+//    ~DonorTest(){};
     MatrixXcd Iz2Hard;
     MatrixXcd Iz4Hard;
     MatrixXcd Iz6Hard;
@@ -20,28 +22,29 @@ protected:
     virtual void SetUp() {
         phosTest2.initialise(0.5, 7.29e-26);
         std::cout << "phos2 Iz \n" << phosTest2.Iz << "\n";
-//        phosTest4.initialise(1.5, 7.29e-26);
-//        phosTest6.initialise(2.5, 7.29e-26);
-        const double h_bar = 1.055e-34;
+        phosTest4.initialise(1.5, 7.29e-26);
+        phosTest6.initialise(2.5, 7.29e-26);
+//        const double h_bar = 1.055e-34;
+        const double h_bar = 1.0;
         Iz2Hard.resize(2,2);
         Iz2Hard << 1, 0, 0, -1;
         Iz2Hard *= h_bar / 2;
 
         Iz4Hard.resize(4,4);
-        Iz4Hard(0, 0) = 3 / 2;
-        Iz4Hard(1, 1) = 1 / 2;
-        Iz4Hard(2, 2) = -1 / 2;
-        Iz4Hard(3, 3) = -3 / 2;
-        Iz4Hard *= h_bar / 2;
+        Iz4Hard(0, 0) = 1.5;
+        Iz4Hard(1, 1) = 0.5;
+        Iz4Hard(2, 2) = -0.5;
+        Iz4Hard(3, 3) = -1.5;
+        Iz4Hard *= h_bar;
 
         Iz6Hard.resize(6,6);
-        Iz6Hard(0, 0) = 5 / 2;
-        Iz6Hard(1, 1) = 3 / 2;
-        Iz6Hard(2, 2) = 1 / 2;
-        Iz6Hard(3, 3) = -1 / 2;
-        Iz6Hard(4, 4) = -3 / 2;
-        Iz6Hard(5, 5) = -5 / 2;
-        Iz6Hard *= h_bar / 2;
+        Iz6Hard(0, 0) = 2.5;
+        Iz6Hard(1, 1) = 1.5;
+        Iz6Hard(2, 2) = 0.5;
+        Iz6Hard(3, 3) = -0.5;
+        Iz6Hard(4, 4) = -1.5;
+        Iz6Hard(5, 5) = -2.5;
+        Iz6Hard *= h_bar;
     }
 
 
@@ -50,14 +53,51 @@ protected:
 
 
 TEST_F(DonorTest, test_eq_2) {
-    EXPECT_EQ(phosTest2.Iz(0,0), Iz2Hard(0,0));
+//    std::cout << "Iz is \n" << phosTest2.Iz << "\n";
+    std::cout << "Ix is \n" << phosTest2.Ix << "\n";
+    std::cout << "Iy is \n" << phosTest2.Iy << "\n";
+    ASSERT_TRUE(phosTest2.Iz(0,0) == Iz2Hard(0,0));
+    ASSERT_TRUE(phosTest2.Iz(1,1) == Iz2Hard(1,1));
 }
 
-//TEST_F(DonorFixture, test_eq_4) {
-//    EXPECT_EQ(phosTest4.Iz, Iz4Hard);
-//}
+TEST_F(DonorTest, test_eq_4) {
+    ASSERT_TRUE(phosTest4.Iz(0,0) == Iz4Hard(0,0));
+    ASSERT_TRUE(phosTest4.Iz(1,1) == Iz4Hard(1,1));
+    ASSERT_TRUE(phosTest4.Iz(2,2) == Iz4Hard(2,2));
+    ASSERT_TRUE(phosTest4.Iz(3,3) == Iz4Hard(3,3));
+}
 
+TEST_F(DonorTest, test_eq_6) {
+    ASSERT_TRUE(phosTest6.Iz(0,0) == Iz6Hard(0,0));
+    ASSERT_TRUE(phosTest6.Iz(1,1) == Iz6Hard(1,1));
+    ASSERT_TRUE(phosTest6.Iz(2,2) == Iz6Hard(2,2));
+    ASSERT_TRUE(phosTest6.Iz(3,3) == Iz6Hard(3,3));
+    ASSERT_TRUE(phosTest6.Iz(4,4) == Iz6Hard(4,4));
+    ASSERT_TRUE(phosTest6.Iz(5,5) == Iz6Hard(5,5));
+}
 
+TEST_F(DonorTest, test_throw) {
+    EXPECT_ANY_THROW(Donor wrongSpin(0.33, 5));
+}
 
+TEST_F(DonorTest, test_setSpin) {
+    Donor setNucTest(0.5, 1);
+    ASSERT_EQ(setNucTest.getNucSpin(), 0.5);
+    setNucTest.setNucSpin(1.5);
+    ASSERT_EQ(setNucTest.getNucSpin(), 1.5);
+}
+
+TEST_F(DonorTest, test_setHyp) {
+    Donor setHypTest(0.5, 1);
+    ASSERT_EQ(setHypTest.getHypCoup(), 1);
+    setHypTest.setHypCoup(2);
+    ASSERT_EQ(setHypTest.getHypCoup(), 2);
+}
+
+TEST_F(DonorTest, test_EigSize) {
+    ASSERT_EQ(phosTest2.getEigs(0.1).size(), 4);
+    ASSERT_EQ(phosTest4.getEigs(0.1).size(), 8);
+    ASSERT_EQ(phosTest6.getEigs(0.1).size(), 12);
+}
 
 
