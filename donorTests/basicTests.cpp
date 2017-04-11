@@ -51,7 +51,7 @@ protected:
 
 };
 
-
+// Test the creation of the 0.5 nucSpin matrices
 TEST_F(DonorTest, test_eq_2) {
 //    std::cout << "Iz is \n" << phosTest2.Iz << "\n";
     std::cout << "Ix is \n" << phosTest2.Ix << "\n";
@@ -60,6 +60,7 @@ TEST_F(DonorTest, test_eq_2) {
     ASSERT_TRUE(phosTest2.Iz(1,1) == Iz2Hard(1,1));
 }
 
+// Test the creation of the 1.5 nucSpin matrices
 TEST_F(DonorTest, test_eq_4) {
     ASSERT_TRUE(phosTest4.Iz(0,0) == Iz4Hard(0,0));
     ASSERT_TRUE(phosTest4.Iz(1,1) == Iz4Hard(1,1));
@@ -67,6 +68,7 @@ TEST_F(DonorTest, test_eq_4) {
     ASSERT_TRUE(phosTest4.Iz(3,3) == Iz4Hard(3,3));
 }
 
+// Test the creation of the 2.5 nucSpin matrices
 TEST_F(DonorTest, test_eq_6) {
     ASSERT_TRUE(phosTest6.Iz(0,0) == Iz6Hard(0,0));
     ASSERT_TRUE(phosTest6.Iz(1,1) == Iz6Hard(1,1));
@@ -76,10 +78,12 @@ TEST_F(DonorTest, test_eq_6) {
     ASSERT_TRUE(phosTest6.Iz(5,5) == Iz6Hard(5,5));
 }
 
+// Test throw for non-halfint/int value
 TEST_F(DonorTest, test_throw) {
     EXPECT_ANY_THROW(Donor wrongSpin(0.33, 5));
 }
 
+// Test setting and getting of nucSpin
 TEST_F(DonorTest, test_setSpin) {
     Donor setNucTest(0.5, 1);
     ASSERT_EQ(setNucTest.getNucSpin(), 0.5);
@@ -87,6 +91,7 @@ TEST_F(DonorTest, test_setSpin) {
     ASSERT_EQ(setNucTest.getNucSpin(), 1.5);
 }
 
+// Test setting and getting of hypCoup
 TEST_F(DonorTest, test_setHyp) {
     Donor setHypTest(0.5, 1);
     ASSERT_EQ(setHypTest.getHypCoup(), 1);
@@ -94,17 +99,21 @@ TEST_F(DonorTest, test_setHyp) {
     ASSERT_EQ(setHypTest.getHypCoup(), 2);
 }
 
+// Test calculation of eigenvalues
 TEST_F(DonorTest, test_EigSize) {
     ASSERT_EQ(phosTest2.getEigs(0.1).size(), 4);
     ASSERT_EQ(phosTest4.getEigs(0.1).size(), 8);
     ASSERT_EQ(phosTest6.getEigs(0.1).size(), 12);
 }
 
+// Test calculation of eigenvalues
 TEST_F(DonorTest, test_Eigs) {
-    ASSERT_EQ(phosTest2.getEigs(0)(0,0), 1.8225e-26);
-    ASSERT_EQ(phosTest2.getEigs(0)(1,0), 1.8225e-26);
-    ASSERT_EQ(phosTest2.getEigs(0)(2,0), 1.8225e-26);
-    ASSERT_EQ(phosTest2.getEigs(0)(3,0), -5.4675e-26);
+    std::complex<double> up{1.8225e-26,0};
+    std::complex<double> down{-5.4675e-26, 0};
+    ASSERT_TRUE(phosTest2.getEigs(0)(0,0) == up);
+    ASSERT_TRUE(phosTest2.getEigs(0)(1,0) == up);
+    ASSERT_TRUE(phosTest2.getEigs(0)(2,0) == up);
+    ASSERT_TRUE(phosTest2.getEigs(0)(3,0) == down);
 }
 
 

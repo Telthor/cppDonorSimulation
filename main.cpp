@@ -29,7 +29,7 @@ int main() {
 
 
 // Loop through a number of steps in magnetic field finding eigenvalues at each step
-    int numSteps = 10000;
+    int numSteps = 1000;
     for (double incr = 0; incr <numSteps; ++incr) {
         double maxField = 1;
         eig1.resize(numSteps, 1);
