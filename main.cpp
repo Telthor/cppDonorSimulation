@@ -12,70 +12,44 @@
 using namespace std;
 
 int main() {
+
+// Initialise a donor with required nuclear spin and hyperfine coupling
 	Donor phos;
-    phos.initialise(2.5, 7.29e-26);
-//    Donor bis(4.5, 7e-25);
-//	std::cout << "nuc spin is:" << phos.getNucSpin() << "\n";
-//	std::cout << "hyp is:" << phos.getHypCoup() << "\n";
-//	std::cout << "nuc spin is:" << phos.getNucSpin() << "\n";
-//	std::cout << "hyp is:" << phos.getHypCoup() << "\n";
-    std::cout << "Id is \n" << phos.IdI << "\n";
-	std::cout << "Sz is \n" << phos.Sz << "\n";
-	std::cout << "Iz is \n" << phos.Iz << "\n";
-    std::cout << "Ix is \n" << phos.Ix << "\n";
-    std::cout << "Iy is \n" << phos.Iy << "\n";
-    std::cout << "Szf is \n" << phos.Sz_f << "\n";
-	phos.getEigs(1);
-	std::cout << "Ham is \n" << phos.Ham << "\n";
-	ComplexEigenSolver<MatrixXcd> ces;
-    ces.compute(phos.Ham);
-	std::cout << "Eigs are: \n" << phos.getEigs(0.000).size() << "\n";
+    phos.initialise(0.5, 7.29e-26);
 
-//    Gnuplot gp;
-//    std::vector<std::complex<double>> eig1;
-//    std::vector<std::complex<double>> eig2;
-//    std::vector<std::complex<double>> eig3;
-//    std::vector<std::complex<double>> eig4;
-//    std::vector<double> fields;
-//
-//    for (double incr = 0; incr <0.1; incr += 0.00001) {
-//        MatrixXcd Eigs = phos.getEigs(incr);
-//        eig1.push_back(Eigs(0,0));
-//        eig2.push_back(Eigs(1,0));
-//        eig4.push_back(Eigs(3,0));
-//        eig3.push_back(Eigs(2,0));
-//        fields.push_back(incr);
-//    }
-//
-//    std::cout << "Eig1 is \n" << eig1[999] << "\n";
-//
-//    ofstream myFile;
-//    myFile.open ("~/dataTest.txt");
-//    myFile << "Try this";
-//    myFile.close();
+// Create a savefile for the eigen values
+    std::ofstream saveFile("donorsgotest.txt");
+
+// Create matrices to store eigenvalues (need (nucSpin + 0.5) * 4)
+    MatrixXcd eig1;
+    MatrixXcd eig2;
+    MatrixXcd eig3;
+    MatrixXcd eig4;
+    MatrixXcd fields;
+
+
+// Loop through a number of steps in magnetic field finding eigenvalues at each step
+    int numSteps = 10000;
+    for (double incr = 0; incr <numSteps; ++incr) {
+        double maxField = 1;
+        eig1.resize(numSteps, 1);
+        eig2.resize(numSteps, 1);
+        eig3.resize(numSteps, 1);
+        eig4.resize(numSteps, 1);
+        fields.resize(numSteps, 1);
+        MatrixXcd Eigs = phos.getEigs(incr);
+        eig1(incr) = Eigs(0);
+        eig2(incr) = Eigs(1);
+        eig4(incr) = Eigs(2);
+        eig3(incr) = Eigs(3);
+        fields(incr) = (maxField/numSteps)*incr;
+    };
+
+// Save eigenvalues to file
+    saveFile << "Fields \n" << fields << "\n Eigs 1 \n" << eig1 << "\n Eigs 2 \n" << eig2 << "\n Eigs 3 \n" << eig3 << "\n Eigs 4 \n" << eig4;
+    saveFile.close();
 
 
 
-//    std::cout << "Sy is \n" << phos.Sy << "\n";
-//    std::cout << "Cr is \n" << phos.Icr << "\n";
-//    std::cout << "An is \n" << phos.Ian << "\n";
-//    std::cout << "Iy is \n" << phos.Iy << "\n";
-//    std::cout << "Iz is \n" << phos.Iz << "\n";
-//	std::cout << "I_S is \n" << phos.S_I << "\n";
-//    std::cout << "complex \n" << phos.i << "\n";
-//    std::cout << "eiges are \n" << phos.getEigs(1) << "\n";
-//    MatrixXd m(2,2);
-//    m(0,0) = 3;
-//    m(1,0) = 2.5;
-//    m(0,1) = -1;
-//    m(1,1) = m(1,0) + m(0,1);
-//    std::cout << "Here is the matrix m:\n" << m << std::endl;
-//    VectorXd v(2);
-//    v(0) = 4;
-//    v(1) = v(0) - 1;
-//    std::cout << "Here is the vector v:\n" << v << std::endl;
-//    Matrix3f Sd;
-//    Sd(0,0) = 3;
-//    std::cout << "Final Matrix \n" << Sd << "\n";
 	return 0;
 }

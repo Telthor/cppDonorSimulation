@@ -36,7 +36,7 @@ void Donor::setSpinsMats() {
 
     for (int inc = 1; inc < (2*nucSpin)+1; ++inc) {
         std::complex<double> cInc = sqrt(2*nucSpin*inc + inc*(1-inc));
-        std::cout << "Coeff "<< inc << " is \n" << cInc << "\n";
+//        std::cout << "Coeff "<< inc << " is \n" << cInc << "\n";
         Donor::coeffs.push_back(cInc);
     }
 
@@ -65,9 +65,6 @@ void Donor::setSpinsMats() {
 }
 
 MatrixXcd Donor::getEigs(const double B_0) {
-    if (typeid(B_0).name() == "str") {
-        throw std::invalid_argument("Please use a number");
-    };
     Donor::Ham = (ge*mu_e/h_bar)*B_0*Sz_f - (gn*mu_n/h_bar)*B_0*Iz_f + A/(pow(h_bar,2))*S_I;
     ComplexEigenSolver<MatrixXcd> es(Ham);
     es.compute(Ham);
@@ -77,12 +74,6 @@ MatrixXcd Donor::getEigs(const double B_0) {
 void Donor::initialise(double nucVal, double hypVal) {
     if (floor(2*nucVal) != 2*nucVal) {
         throw std::invalid_argument("Please use integer or half-integer value");
-    };
-    if (typeid(nucVal).name() == "str") {
-        throw std::invalid_argument("Please use a number");
-    };
-    if (typeid(hypVal).name() == "str") {
-        throw std::invalid_argument("Please use a number");
     };
     Donor::nucSpin = nucVal;
     Donor::A = hypVal;

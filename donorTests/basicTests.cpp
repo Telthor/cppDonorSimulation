@@ -24,8 +24,8 @@ protected:
         std::cout << "phos2 Iz \n" << phosTest2.Iz << "\n";
         phosTest4.initialise(1.5, 7.29e-26);
         phosTest6.initialise(2.5, 7.29e-26);
-//        const double h_bar = 1.055e-34;
-        const double h_bar = 1.0;
+        const double h_bar = 1.055e-34;
+//        const double h_bar = 1.0;
         Iz2Hard.resize(2,2);
         Iz2Hard << 1, 0, 0, -1;
         Iz2Hard *= h_bar / 2;
@@ -98,6 +98,13 @@ TEST_F(DonorTest, test_EigSize) {
     ASSERT_EQ(phosTest2.getEigs(0.1).size(), 4);
     ASSERT_EQ(phosTest4.getEigs(0.1).size(), 8);
     ASSERT_EQ(phosTest6.getEigs(0.1).size(), 12);
+}
+
+TEST_F(DonorTest, test_Eigs) {
+    ASSERT_EQ(phosTest2.getEigs(0)(0,0), 1.8225e-26);
+    ASSERT_EQ(phosTest2.getEigs(0)(1,0), 1.8225e-26);
+    ASSERT_EQ(phosTest2.getEigs(0)(2,0), 1.8225e-26);
+    ASSERT_EQ(phosTest2.getEigs(0)(3,0), -5.4675e-26);
 }
 
 
